@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Abdallah Akram</title>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Fonts ===== */
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: "Share Tech Mono", monospace;
+  color: #00ff99;
+  background: black;
+  overflow-x: hidden;
+}
+
+    /* ===== Matrix Background ===== */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
+
+    /* ===== Main Container ===== */
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    /* ===== Typing Animation ===== */
+    .typing {
+      border-right: 3px solid #00ff88;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(30, end), blink 0.7s step-end infinite;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #00ff88; }
+    }
+
+    /* ===== Profile Image ===== */
+    .profile-pic {
+      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border: 3px solid #00ff88;
+      box-shadow: 0px 0px 20px #00ff88;
+      margin: 20px 0;
+    }
+
+    /* ===== Sections ===== */
+    .section {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 255, 136, 0.3);
+    }
+
+    h1 {
+      color: #00ff88;
+      text-shadow: 0px 0px 10px #00ff88;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #e6fff2;
+    }
+
+    /* ===== Buttons ===== */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      background: transparent;
+      border: 2px solid #00ff88;
+      color: #00ff88;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #00ff88;
+      color: #000;
+      box-shadow: 0px 0px 15px #00ff88;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      background: rgba(0,0,0,0.7);
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix Background -->
+  <canvas id="matrix"></canvas>
+
+  <div class="container">
+    <h1 class="typing">Portfolio - Abdallah Akram Owais Tawfik</h1>
+    <h2>Computer Science Student | Aspiring Cybersecurity Specialist</h2>
+    <img src="C:\Users\Abdallah\Pictures\IMG_2866.jpg" alt="Photo of Abdallah" class="profile-pic">
+
+    <!-- About -->
+    <div class="section">
+      <h1>About Me</h1>
+      <p>Age: 20 Years Old</p>
+      <p>College: Computer Science student at Sinai University.</p>
+      <p>Interests: Programming, Cybersecurity, Ethical Hacking.</p>
+      <p>Ambition: I aim to become a successful and well-known programmer, travel the world, and leave a meaningful digital footprint.</p>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <h1>Skills</h1>
+      <p>Programming: Python, C++, Java (basic), HTML, CSS.</p>
+      <p>Cybersecurity: Network fundamentals, Penetration Testing basics.</p>
+      <p>Tools: GitHub, Linux, VS Code.</p>
+      <p>Soft Skills: Problem-Solving, Teamwork, Fast Learner.</p>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <h1>Projects</h1>
+      <p>Password Generator (Python).</p>
+      <p>Mini Website (HTML, CSS).</p>
+      <p>Basic Encryption Tool (Python).</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="section">
+      <h1>Contact Me</h1>
+      <div class="buttons">
+        <a href="mailto:abdallhakrm9@gmail.com" class="btn">📧 Email</a>
+        <a href="https://github.com/abdallahakram20" class="btn">💻 GitHub</a>
+        <a href="https://www.linkedin.com/in/abdallah-akram-3898bb2a6" class="btn">🔗 LinkedIn</a>
+        <a href="https://www.instagram.com/abdallah_akram19" class="btn">📸 Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 - Developed by Abdallah Akram Owais Tawfik</p>
+  </footer>
+
+  <!-- ===== Matrix Effect Script ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff88";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+        // تشغيل الصوت عند الضغط على زر البداية
+    const startBtn = document.getElementById("start-btn");
+    const bgMusic = document.getElementById("bg-music");
+
+    startBtn.addEventListener("click", () => {
+      bgMusic.volume = 0.3;
+      bgMusic.play();
+      startBtn.style.display = "none"; // اخفي الزر بعد التشغيل
+    });
+  </script>
+</body>
+</html>
